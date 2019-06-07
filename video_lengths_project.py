@@ -1,7 +1,9 @@
 import os
 from moviepy.editor import VideoFileClip
 from pathlib import Path
+import time
 
+t1=time.time()
 p=Path(input()).resolve()
 p=str(p)
 os.chdir(p)
@@ -17,12 +19,20 @@ if os.path.isdir(p):
                 try:
                     clip = VideoFileClip(os.path.join(root,file))
                     total+= clip.duration
+                    print(file)
                     clip.reader.close()
                     clip.audio.reader.close_proc()
                 except:
                     print("Invalid File"+file)
 else:
     print("path was not found")
-print(total)
+t2=time.time()
+print("Total lengtgh of the videos")
+print(total,end=" ")
+print("seconds")
+print(t2-t1,end=" ")
+print("seconds taken to execute program")
+
+
 
 
